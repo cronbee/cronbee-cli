@@ -1,6 +1,11 @@
 # Cronbee CLI
 
 A command line interface for [Cronbee monitoring tool](https://cronbee.com).  
+
+<p align="center">
+  <img width="470" height="245" alt="Cronbee" src="https://cronbee.com/images/post_header_470_245_linkedin.png">
+</p>
+
 The easiest way to monitor your Cron tasks!
 
 ## Getting started 
