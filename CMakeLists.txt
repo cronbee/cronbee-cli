@@ -1,0 +1,35 @@
+cmake_minimum_required(VERSION 3.11)
+project(cronbee C)
+SET(MAJOR_VERSION 1)
+SET(MINOR_VERSION 0)
+SET(PATCH_VERSION 0)
+
+set(CMAKE_C_STANDARD 99)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin")
+file(GLOB cronbee_SRC "src/*.c")
+
+add_executable(cronbee ${cronbee_SRC})
+target_include_directories(cronbee PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+
+find_package(CURL REQUIRED)
+if (CURL_FOUND)
+    include_directories(${CURL_INCLUDE_DIR})
+    target_link_libraries(cronbee ${CURL_LIBRARIES})
+    message(${CURL_LIBRARIES})
+endif (CURL_FOUND)
+
+install(TARGETS cronbee
+        COMPONENT linapp
+        RUNTIME DESTINATION  "/usr/bin"
+        LIBRARY DESTINATION "/usr/lib"
+        DESTINATION "/usr/bin")
+
+#deb package creation
+set(CPACK_GENERATOR "DEB")
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Aliengen")
+SET(CPACK_PACKAGE_VERSION_MAJOR "${MAJOR_VERSION}")
+SET(CPACK_PACKAGE_VERSION_MINOR "${MINOR_VERSION}")
+SET(CPACK_PACKAGE_VERSION_PATCH "${PATCH_VERSION}")
+SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libcurl3")
+SET(CPACK_PACKAGE_FILE_NAME "${CMAKE_PROJECT_NAME}_${MAJOR_VERSION}.${MINOR_VERSION}.${CPACK_PACKAGE_VERSION_PATCH}_${CPACK_DEBIAN_PACKAGE_ARCHITECTURE}")
+include(CPack)
