@@ -77,10 +77,7 @@ bool cronbee_start(struct options *options) {
     sendMessage(msg, &response);
     options->token = response.response;
     free(msg);
-    char *env = malloc(strlen("CRONBEE_TOKEN=") + strlen(options->token) + 1);
-    strcpy(env, "CRONBEE_TOKEN=");
-    strcat(env, options->token);
-    putenv(env);
+    setEnvVar("CRONBEE_TOKEN", options->token);
     return response.success;
 }
 

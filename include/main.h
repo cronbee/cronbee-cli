@@ -24,5 +24,6 @@ struct options {
 void printUsage(char**);
 void printError(const char*);
 void printInfo(const char*, struct options*);
+void setEnvVar(char*, char*);
 
 #endif //CRONBEE_MAIN_H

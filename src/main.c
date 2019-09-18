@@ -50,6 +50,8 @@ int main(int argc, char **argv) {
         return EXIT_FAILURE;
     }
 
+    setEnvVar("CRONBEE_UUID", options.uuid);
+
     if(options.ping == true && options.token != NULL) {
         printError("The -p option is not compatible with the -t option.\n");
         return EXIT_FAILURE;
@@ -113,4 +115,12 @@ void printInfo(const char* info, struct options *options) {
     if(options->verbose == false)
         return;
     fprintf(stdout, "\x1b[32m[info]: %s\x1b[0m\n", info);
+}
+
+void setEnvVar(char* name, char* value) {
+    char *env = malloc(strlen("name") + strlen(value) + 2);
+    strcpy(env, name);
+    strcat(env, "=");
+    strcat(env, value);
+    putenv(env);
 }
