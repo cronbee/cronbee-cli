@@ -67,7 +67,7 @@ Here are the options available in the CLI:
 
 ```
 $ wget -O - http://packages.cronbee.com/apt/conf/key.gpg.key|apt-key add -  
-$ curl https://packages.cronbee.com/apt/debian/buster.list > /etc/apt/sources.list.d/  
+$ curl https://packages.cronbee.com/apt/debian/buster.list > /etc/apt/sources.list.d/buster.list  
 $ apt-get update
 $ apt-get install cronbee
 ```
@@ -76,7 +76,7 @@ $ apt-get install cronbee
 
 ```
 $ wget -O - http://packages.cronbee.com/apt/conf/key.gpg.key|apt-key add -  
-$ curl https://packages.cronbee.com/apt/ubuntu/bionic.list > /etc/apt/sources.list.d/  
+$ curl https://packages.cronbee.com/apt/ubuntu/bionic.list > /etc/apt/sources.list.d/bionic.list  
 $ apt-get update
 $ apt-get install cronbee
 ```
